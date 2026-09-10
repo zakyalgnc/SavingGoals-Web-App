@@ -78,7 +78,6 @@ $daftar_tabungan = $stmt->fetchAll();
                         <i data-lucide="plus" class="w-4 h-4"></i>
                         <span>Target Baru</span>
                     </a>
-                    <!-- Tombol Menabung Langsung Memanggil menabung.php -->
                     <a href="menabung.php" class="flex-1 md:flex-none px-4 py-3 bg-emerald-500 text-white font-bold rounded-2xl text-xs hover:bg-emerald-600 transition shadow-sm text-center flex items-center justify-center space-x-2">
                         <i data-lucide="wallet" class="w-4 h-4"></i>
                         <span>+ Menabung</span>
@@ -89,7 +88,6 @@ $daftar_tabungan = $stmt->fetchAll();
             <!-- Ringkasan Statistik -->
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-8">
                 
-                <!-- Total Terkumpul -->
                 <div class="bg-white border border-slate-100 rounded-2xl md:rounded-3xl p-3.5 md:p-5 shadow-sm flex items-center space-x-3">
                     <div class="p-2.5 md:p-3 bg-indigo-50 text-indigo-600 rounded-xl md:rounded-2xl flex-shrink-0">
                         <i data-lucide="wallet" class="w-5 h-5 md:w-6 md:h-6"></i>
@@ -100,7 +98,6 @@ $daftar_tabungan = $stmt->fetchAll();
                     </div>
                 </div>
 
-                <!-- Total Target -->
                 <div class="bg-white border border-slate-100 rounded-2xl md:rounded-3xl p-3.5 md:p-5 shadow-sm flex items-center space-x-3">
                     <div class="p-2.5 md:p-3 bg-blue-50 text-blue-600 rounded-xl md:rounded-2xl flex-shrink-0">
                         <i data-lucide="target" class="w-5 h-5 md:w-6 md:h-6"></i>
@@ -111,7 +108,6 @@ $daftar_tabungan = $stmt->fetchAll();
                     </div>
                 </div>
 
-                <!-- Target Aktif -->
                 <div class="bg-white border border-slate-100 rounded-2xl md:rounded-3xl p-3.5 md:p-5 shadow-sm flex items-center space-x-3">
                     <div class="p-2.5 md:p-3 bg-amber-50 text-amber-600 rounded-xl md:rounded-2xl flex-shrink-0">
                         <i data-lucide="clock" class="w-5 h-5 md:w-6 md:h-6"></i>
@@ -122,7 +118,6 @@ $daftar_tabungan = $stmt->fetchAll();
                     </div>
                 </div>
 
-                <!-- Tercapai -->
                 <div class="bg-white border border-slate-100 rounded-2xl md:rounded-3xl p-3.5 md:p-5 shadow-sm flex items-center space-x-3">
                     <div class="p-2.5 md:p-3 bg-emerald-50 text-emerald-600 rounded-xl md:rounded-2xl flex-shrink-0">
                         <i data-lucide="check-circle-2" class="w-5 h-5 md:w-6 md:h-6"></i>
@@ -186,10 +181,16 @@ $daftar_tabungan = $stmt->fetchAll();
                                     <div class="bg-indigo-600 h-full rounded-full transition-all duration-500" style="width: <?= $persen ?>%"></div>
                                 </div>
 
-                                <!-- Tombol Menabung Langsung Membawa ID -->
-                                <div class="flex space-x-2 border-t border-slate-100 pt-3">
+                                <!-- Tombol Aksi CRUD lengkap: Menabung, Edit, dan Hapus -->
+                                <div class="flex items-center space-x-2 border-t border-slate-100 pt-3">
                                     <a href="menabung.php?id=<?= $id_tabungan ?>" class="flex-1 text-center bg-indigo-50 hover:bg-indigo-100 text-indigo-600 text-xs py-2 rounded-xl font-bold transition">
                                         Menabung
+                                    </a>
+                                    <a href="edit_tabungan.php?id=<?= $id_tabungan ?>" class="p-2 bg-amber-50 hover:bg-amber-100 text-amber-600 rounded-xl transition" title="Edit">
+                                        <i data-lucide="pencil" class="w-4 h-4"></i>
+                                    </a>
+                                    <a href="hapus_tabungan.php?id=<?= $id_tabungan ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus target tabungan ini?')" class="p-2 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-xl transition" title="Hapus">
+                                        <i data-lucide="trash-2" class="w-4 h-4"></i>
                                     </a>
                                 </div>
                             </div>
