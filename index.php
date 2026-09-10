@@ -78,14 +78,15 @@ $daftar_tabungan = $stmt->fetchAll();
                         <i data-lucide="plus" class="w-4 h-4"></i>
                         <span>Target Baru</span>
                     </a>
-                    <a href="transaksi.php" class="flex-1 md:flex-none px-4 py-3 bg-emerald-500 text-white font-bold rounded-2xl text-xs hover:bg-emerald-600 transition shadow-sm text-center flex items-center justify-center space-x-2">
+                    <!-- Tombol Menabung Langsung Memanggil menabung.php -->
+                    <a href="menabung.php" class="flex-1 md:flex-none px-4 py-3 bg-emerald-500 text-white font-bold rounded-2xl text-xs hover:bg-emerald-600 transition shadow-sm text-center flex items-center justify-center space-x-2">
                         <i data-lucide="wallet" class="w-4 h-4"></i>
                         <span>+ Menabung</span>
                     </a>
                 </div>
             </div>
 
-            <!-- Ringkasan Statistik (2 Kolom di Mobile, 4 Kolom di Desktop) -->
+            <!-- Ringkasan Statistik -->
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-8">
                 
                 <!-- Total Terkumpul -->
@@ -152,6 +153,7 @@ $daftar_tabungan = $stmt->fetchAll();
             <?php else: ?>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
                     <?php foreach ($daftar_tabungan as $item): 
+                        $id_tabungan = $item['id'] ?? $item['id_tabungan'] ?? null;
                         $persen = $item['target_nominal'] > 0 ? min(100, round(($item['terkumpul'] / $item['target_nominal']) * 100)) : 0;
                     ?>
                         <div class="bg-white border border-slate-100 rounded-3xl p-5 shadow-sm flex flex-col justify-between">
@@ -166,12 +168,12 @@ $daftar_tabungan = $stmt->fetchAll();
 
                                 <div class="flex-1 overflow-hidden">
                                     <div class="flex items-center justify-between">
-                                        <h3 class="text-sm font-bold text-slate-800 truncate"><?= htmlspecialchars($item['judul']) ?></h3>
-                                        <span class="text-[10px] font-bold px-2.5 py-1 rounded-full <?= $item['status'] == 'Tercapai' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600' ?>">
-                                            <?= $item['status'] ?>
+                                        <h3 class="text-sm font-bold text-slate-800 truncate"><?= htmlspecialchars($item['judul'] ?? $item['nama_target'] ?? 'Target Tabungan') ?></h3>
+                                        <span class="text-[10px] font-bold px-2.5 py-1 rounded-full <?= ($item['status'] ?? '') == 'Tercapai' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600' ?>">
+                                            <?= htmlspecialchars($item['status'] ?? 'Belum Tercapai') ?>
                                         </span>
                                     </div>
-                                    <p class="text-xs text-slate-400 mt-0.5">Target: Rp <?= number_format($item['target_nominal'], 0, ',', '.') ?></p>
+                                    <p class="text-xs text-slate-400 mt-0.5">Target: Rp <?= number_format($item['target_nominal'] ?? 0, 0, ',', '.') ?></p>
                                 </div>
                             </div>
 
@@ -180,8 +182,15 @@ $daftar_tabungan = $stmt->fetchAll();
                                     <span class="text-slate-500">Rp <?= number_format($item['terkumpul'], 0, ',', '.') ?></span>
                                     <span class="text-indigo-600"><?= $persen ?>%</span>
                                 </div>
-                                <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                                <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden mb-4">
                                     <div class="bg-indigo-600 h-full rounded-full transition-all duration-500" style="width: <?= $persen ?>%"></div>
+                                </div>
+
+                                <!-- Tombol Menabung Langsung Membawa ID -->
+                                <div class="flex space-x-2 border-t border-slate-100 pt-3">
+                                    <a href="menabung.php?id=<?= $id_tabungan ?>" class="flex-1 text-center bg-indigo-50 hover:bg-indigo-100 text-indigo-600 text-xs py-2 rounded-xl font-bold transition">
+                                        Menabung
+                                    </a>
                                 </div>
                             </div>
                         </div>
