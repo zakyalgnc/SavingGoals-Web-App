@@ -7,7 +7,7 @@ Aplikasi manajemen target tabungan berbasis web yang responsif, dikembangkan unt
 ## 📹 Video Demonstrasi & Penjelasan
 Saksikan video rekam layar penjelasan struktur database, demo fitur, pengujian responsif mobile, serta isolasi multi-user pada link berikut:
 
-👉 [**Tonton Video Penjelasan Aplikasi di Sini**](PASTE_LINK_YOUTUBE_ATAU_GDRIVE_KAMU_DI_SINI)
+👉 [**Tonton Video Penjelasan Aplikasi di Sini**](https://drive.google.com/drive/folders/1U4Id0XDIICwhBUwjNjFg39_BcolFq2GW)
 
 ---
 
